@@ -1,0 +1,107 @@
+<!doctype html>
+<html ng-app="gameApp">
+  <head>
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link href="assets/css/table-responsive.css" rel="stylesheet">
+
+    <script src="cronometro.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-resource.min.js"></script>
+    <script>
+       document.write('<base href="' + document.location + '" />');
+    </script>
+    <script src="service.js"></script>
+    <script src="app.js"></script>
+    <style>
+    .done-true {
+      text-decoration: line-through;
+      color: grey;
+    }
+    </style>
+  </head>
+  <body ng-controller="MainCtrl" onload="empezarDetener(this);">
+  <section id="container" >
+  <header class="header black-bg">
+    <a href="index.html" class="logo"><b>El cuando cuando</b></a>
+  </header>
+  <title>El cuando cuando</title>
+
+  <section class="wrapper">
+          <div class="row mt">
+            <div class="col-md-8">
+            <div class="showback">
+              <h2>{{data.incognita.titulo}}</h2>
+              <hr/>
+              <p>{{data.incognita.pregunta}}</p>
+            </div>
+
+            </div>
+            <div class="col-md-4">
+              <div class="showback">
+                <h2>El tiempo corre...</h2>
+                <hr/>
+                <div class="crono_wrapper" >
+                    <h2 id='crono'>00:00:00</h2>
+                </div>              
+              </div>
+            </div>
+          
+        </div>
+      <form action="prueba.html" method="post">
+      <div class="row mt">
+          <div class="col-md-4">
+            <div class="showback">
+                  <h1>Pistas</h1>
+                  <hr/>
+                  <div ng-repeat="pista in data.pistas">
+                  <ul>
+                    <li>
+                       <input type="checkbox" ng-model="todo.done">
+                       <span class="done-{{todo.done}}">{{pista}}</span>
+                    </li>
+                  </ul>
+                  </div>
+            </div>
+            <div class="showback">
+              <input type="submit" class="btn btn-theme04" value="Listo"/>
+              <button class="btn btn-success" type="button">Compartir</button>
+              <button class="btn btn-warning" type="button">Proximo nivel</button>
+            </div>
+          </div>  
+
+          <div class="col-md-8">
+               <div class="showback">
+                <h2>Tablero</h2>
+                <section id="no-more-tables">
+                <table  border="1" class="table table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr >
+                        <th></th>
+                        <th ng-repeat="var in data.variablesHorizontales">
+                             {{var}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="var in data.variablesVerticales">
+                        <td >
+                             {{var}}
+                        </td>
+                        <td ng-repeat="var in data.variablesHorizontales" data-title="{{var}}">
+                          <input type="checkbox" name="casillas" style="width: 100%;"/>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>  
+                </section>
+              </div>
+          </div>
+      </div>
+      </form>
+  </section>
+  </section>
+  </body>
+</html>
